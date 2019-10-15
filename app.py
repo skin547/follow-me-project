@@ -15,6 +15,7 @@ class Region(Resource):
 
     def get(self):
         return self.regions
+        
 
 @app.route('/prediction')
 def predict():
@@ -26,8 +27,6 @@ def catch_all(path):
     print("Current path:" + path)
     return render_template('index.html')
     # return 'You want path: %s' % path
-
-
 
 api.add_resource(Region, '/regions')
 
