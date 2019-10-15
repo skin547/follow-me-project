@@ -1,2 +1,4 @@
 __pycache__
-/client
+.vscode
+models
+create_db.sql
