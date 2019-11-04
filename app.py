@@ -1,7 +1,7 @@
 from flask import Flask, render_template
+from flask_cors import CORS
 from flask_restful import Resource, Api
 import time
-import json
 from models.Region import Region, RegionController
 
 app = Flask(__name__, template_folder="client/build",
@@ -14,9 +14,9 @@ api = Api(app)
 def catch_all(path):
     print("Current path:" + path)
     return render_template('index.html')
-    # return 'You want path: %s' % path
-
-api.add_resource(RegionController, '/regions')
+    
+api.add_resource(RegionController, '/regions', resource_class_kwargs={'Model':Region()})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    CORS(app)
+    app.run(host='0.0.0.0',debug=True)
