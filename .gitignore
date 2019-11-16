@@ -1,6 +1,3 @@
 __pycache__
 .vscode
-create_db.sql
 followme.sql
-config.py
-App/detecUtil

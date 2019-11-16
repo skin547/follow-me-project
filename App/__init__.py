@@ -1,4 +1,4 @@
-from .config import config
+from .config import configs
 import time
 from flask import Flask, render_template
 from flask_cors import CORS
@@ -9,7 +9,7 @@ app = Flask(__name__,
             template_folder="App/frontend/build",
             static_folder="App/frontend/build/static")
 
-app.config.from_object(config['heroku'])
+app.config.from_object(configs['heroku'])
 CORS(app)
 api = Api(app)
 db = SQLAlchemy(app)
