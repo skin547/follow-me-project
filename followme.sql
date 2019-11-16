@@ -25,26 +25,26 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `location`
+-- 資料表結構 `User`
 --
 
-CREATE TABLE `location` (
-  `LID` int(11) NOT NULL,
+CREATE TABLE `User` (
+  `UID` int(11) NOT NULL PRIMARY,
   `name` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `region`
+-- 資料表結構 `Area`
 --
 
-CREATE TABLE `region` (
-  `LID` int(11) NOT NULL,
-  `RID` int(11) NOT NULL,
+CREATE TABLE `Area` (
+  `AID` int(11) NOT NULL PRIMARY,
+  `UID` int(11) NOT NULL,
   `name` text NOT NULL,
-  `Number` int(11) NOT NULL,
-  `Time` int(11) NOT NULL
+  `number` int(11) NOT NULL,
+  `time` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 COMMIT;
 
