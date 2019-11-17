@@ -1,4 +1,3 @@
-from .config import configs
 import time
 from flask import Flask, render_template
 from flask_cors import CORS
