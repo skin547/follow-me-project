@@ -2,3 +2,4 @@ __pycache__
 .vscode
 followme.sql
 dev_app.py
+dev_config.py
