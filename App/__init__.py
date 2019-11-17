@@ -9,8 +9,7 @@ app = Flask(__name__,
             template_folder="./frontend/build",
             static_folder="./frontend/build/static")
 
-app.config.from_object(configs['heroku'])
-CORS(app)
+aCORS(app)
 api = Api(app)
 db = SQLAlchemy(app)
 
