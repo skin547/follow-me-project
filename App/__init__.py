@@ -9,7 +9,7 @@ app = Flask(__name__,
             template_folder="./frontend/build",
             static_folder="./frontend/build/static")
 
-aCORS(app)
+CORS(app)
 api = Api(app)
 db = SQLAlchemy(app)
 
