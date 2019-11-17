@@ -16,7 +16,7 @@ class areaApi(Resource):
     def get(self,id):
         target = area.query.get(id)
         if(target):
-            return ({"id":target.id, 'name':target.name, 'userid':target.user,'time':str(target.time)}),200
+            return ({"id":target.id, 'name':target.name,'number':target.number, 'userid':target.user,'time':str(target.time)}),200
         return 201
 
     def post(self):
