@@ -6,8 +6,8 @@ from flask_restful import Resource, Api
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__,
-            template_folder="App/frontend/build",
-            static_folder="App/frontend/build/static")
+            template_folder="./frontend/build",
+            static_folder="./frontend/build/static")
 
 app.config.from_object(configs['heroku'])
 CORS(app)
