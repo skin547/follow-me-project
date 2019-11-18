@@ -8,11 +8,11 @@ class area(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     user = db.Column(db.Integer)
     name = db.Column(db.String)
-    number = db.Column(db.Integer)
+    capacity = db.Column(db.Integer)
     time = db.Column(db.DateTime)
 
-    def __init__(self,user,name,number):
+    def __init__(self, user, name, capacity):
         self.user = user
         self.name = name
-        self.number = number
+        self.capacity = capacity
         self.time = datetime.now()

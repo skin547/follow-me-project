@@ -7,7 +7,7 @@ class arealistApi(Resource):
         parser = reqparse.RequestParser()
         parser.add_argument("user", type=int)
         parser.add_argument("name", type=str)
-        parser.add_argument("number", type=int)
+        parser.add_argument("capacity", type=int)
         parser.add_argument("id", type=int)
         self.__parser = parser
 
@@ -15,7 +15,8 @@ class arealistApi(Resource):
         areas = area.query.all()
         result = []
         for item in areas:
-            result.append({"id":item.id,	'time':str(item.time), 'user':item.user, 'name':item.name, 'number':item.number})
+            result.append({"id": item.id,	'time': str(
+                item.time), 'user': item.user, 'name': item.name, 'capacity': item.capacity})
         print(result)
         return result, 200
 
@@ -23,13 +24,14 @@ class arealistApi(Resource):
         args = self.__parser.parse_args()
         print("request arguments:")
         print(args)
-        new_area = area(args['user'], args['name'], args['number'])
+        new_area = area(args['user'], args['name'], args['capacity'])
         if(new_area == None):
             print("fail to create area")
             return 201
         db.session.add(new_area)
         db.session.commit()
-        result = {"id":new_area.id ,"userId":new_area.user,"name":new_area.name,"number":new_area.number,"time":str(new_area.time)}
+        result = {"id": new_area.id, "userId": new_area.user, "name": new_area.name,
+                  "capacity": new_area.capacity, "time": str(new_area.time)}
         return result, 201
 
     # def post(self):
