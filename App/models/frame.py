@@ -3,7 +3,7 @@ from ..import db
 
 
 class frame(db.Model):
-    __tablename__ = 'frame'
+    __tablename__ = 'Frame'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     area = db.Column(db.Integer)
     number = db.Column(db.Integer)
