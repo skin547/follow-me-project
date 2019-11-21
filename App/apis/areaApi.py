@@ -17,9 +17,12 @@ class areaApi(Resource):
     def get(self,id):
         target = area.query.get(id)
         if(target):
+            status = target.compute_status()
+            print(status)
             return ({"id": target.id, 'name': target.name, 
             'capacity': target.capacity, 'userid': target.user, 
-            'time': str(target.time),'status':self.compute_status(target)}), 200
+                     'time': str(target.time), 'status': status['congestion'],
+            'number':status['number']}), 200
         return 201
 
     def post(self):
@@ -34,21 +37,22 @@ class areaApi(Resource):
         db.session.commit()
         return 201
 
-    def compute_status(self,area):
-        if(area.capacity == 0):
-            return None
-        area_frame = frame.query.filter(frame.area == area.id)
-        if(area_frame != None):
-            latest_frame = area_frame.order_by(frame.id.desc()).first()
-            current_num_of_people = latest_frame.number
-            congestion = current_num_of_people/area.capacity
-            if(congestion <0.25):
-                status = 'green'
-            elif(congestion < 0.5):
-                status = 'yellow'
-            elif(congestion < 0.75):
-                status = 'red'
-            else:
-                status = 'purple'
-            return status
-        return None
+    # def compute_status(self,area):
+    #     if(area.capacity == 0):
+    #         return None
+    #     area_frame = frame.query.filter(frame.area == area.id)
+    #     if(area_frame != None):
+    #         latest_frame = area_frame.order_by(frame.id.desc()).first()
+    #         current_num_of_people = latest_frame.number
+    #         print(current_num_of_people)
+    #         congestion = current_num_of_people/area.capacity
+    #         if(congestion <0.25):
+    #             status = 'green'
+    #         elif(congestion < 0.5):
+    #             status = 'yellow'
+    #         elif(congestion < 0.75):
+    #             status = 'red'
+    #         else:
+    #             status = 'purple'
+    #         return {"congestion":status,"number":current_num_of_people}
+    #     return None

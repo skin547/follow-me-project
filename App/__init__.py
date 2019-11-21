@@ -3,12 +3,13 @@ from flask import Flask, render_template
 from flask_cors import CORS
 from flask_restful import Resource, Api
 from flask_sqlalchemy import SQLAlchemy
-from .config import configs
+# from .config import configs
+from .dev_config import configs
 
 app = Flask(__name__,
             template_folder="./frontend/build",
             static_folder="./frontend/build/static")
-app.config.from_object(configs['heroku'])
+app.config.from_object(configs['development'])
 CORS(app)
 api = Api(app)
 db = SQLAlchemy(app)

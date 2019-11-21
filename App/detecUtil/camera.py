@@ -45,7 +45,8 @@ def stream(video_source):
     stream_video = cv2.VideoCapture(video_source)
     while(stream_video.isOpened()):
         success, frame = stream_video.read()
-        frame = cv2.flip(frame,0)
+        frame = cv2.flip(frame, 0)
+        frame = cv2.resize(frame, (600, 350))
         if(success):
             jpeg = cv2.imencode('.jpg', frame)[1]
             jpeg = jpeg.tobytes()

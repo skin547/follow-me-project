@@ -15,8 +15,11 @@ class arealistApi(Resource):
         areas = area.query.all()
         result = []
         for item in areas:
+            status = item.compute_status()
             result.append({"id": item.id,	'time': str(
-                item.time), 'user': item.user, 'name': item.name, 'capacity': item.capacity})
+                item.time), 'user': item.user, 'name': item.name,
+                 'capacity': item.capacity, 'status':status['congestion'],
+                 'number':status['number']})
         print(result)
         return result, 200
 

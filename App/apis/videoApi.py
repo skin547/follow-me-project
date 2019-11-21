@@ -20,7 +20,6 @@ class videoApi(Resource):
             return {"status":"video not found"},201
         return Response(stream(vid.source), mimetype='multipart/x-mixed-replace; boundary=frame')
 
-
     def post(self):
         args = self.__parser.parse_args()
         new_video = video(args['area'], "App/detecUtil/IMG_2185.MOV")

@@ -36,3 +36,4 @@ class frameApi(Resource):
         db.session.commit()
         return {"id":new_frame.id,"number":new_frame.number} ,201
 
+
