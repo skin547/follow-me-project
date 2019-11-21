@@ -20,7 +20,7 @@ class area(db.Model):
 
     def compute_status(self):
         if(self.capacity == 0):
-            return None
+            return {"congestion": None, "number": None}
         area_frame = frame.query.filter(frame.area == area.id)
         if(area_frame != None):
             latest_frame = area_frame.order_by(frame.id.desc()).first()
@@ -36,4 +36,4 @@ class area(db.Model):
                 else:
                     status = 'purple'
                 return {"congestion": status, "number": current_num_of_people}
-        return None
+        return {"congestion": None, "number": None}
