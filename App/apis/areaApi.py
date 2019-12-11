@@ -3,6 +3,7 @@ import json
 from flask_restful import Resource, reqparse
 from ..models import area
 from ..models import frame
+from ..models import video
 from .. import db
 
 class areaApi(Resource):
@@ -11,18 +12,20 @@ class areaApi(Resource):
         parser.add_argument("user", type=int)
         parser.add_argument("name", type=str)
         parser.add_argument("capacity", type=int)
-        parser.add_argument("id", type=int)
+        parser.add_argument("source", type=str)
         self.__parser = parser
 
     def get(self,id):
         target = area.query.get(id)
         if(target):
             status = target.compute_status()
-            print(status)
+            user = target.user
             return ({"id": target.id, 'name': target.name, 
-            'capacity': target.capacity, 'userid': target.user, 
-                     'time': str(target.time), 'status': status['congestion'],
-            'number':status['number']}), 200
+                    'capacity': target.capacity, 
+                    'time': str(target.time), 
+                    'status': status['congestion'], 'number': status['number'], 
+                    'user': {"name": user.name, "id": user.id} ,
+                    'video_id':target.video[0].id } ), 200
         return 201
 
     def post(self):
@@ -30,10 +33,11 @@ class areaApi(Resource):
         print("request arguments:")
         print(args)
         new_area = area(args['user'], args['name'], args['capacity'])
-        if(new_area == None):
-            print("fail to create area")
+        new_video = video(new_area.id,args['source'])
+        if(new_area == None or new_video == None):
+            print("fail to create area or Video")
             return 201
         db.session.add(new_area)
         db.session.commit()
-        return 201
+        return 200
 
