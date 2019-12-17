@@ -54,3 +54,4 @@ const showImage =(status)=>{
   }
 };
 export default TotalInfo;
+export {showImage};

@@ -18,10 +18,6 @@ class video(db.Model):
     def start_detect(self, video):
         for detect_result in detector(video):
             new_frame = frame(video.area_id, detect_result)
-            # data = {"id":new_frame.id,"area_id":new_frame.area_id,"number":new_frame.number,"time":new_frame.time}
-            # print(data)
-            # yield (u'--frame\r\n'
-            #        u'Content-Type: application/json\r\n\r\n' + str(data) + u'\r\n')
             db.session.add(new_frame)
             db.session.commit()
         print("End of detect for area:" + str(video.area_id))

@@ -31,6 +31,11 @@ const AddArea=()=>{
               style={{color:"white",marginTop:"7.5%",marginLeft:"7.5%",width:"40rem"}}>
 
         <thead>
+          {/* <tr> */}
+          <td colSpan="3" align="center">
+              <h1 style={{color:"white"}}>新增場域</h1>
+            </td>
+          {/* </tr> */}
           <tr>
             {/* <td>
               {name}

@@ -27,6 +27,10 @@ const AddFacil=(props)=>{
       <Form onSubmit={Upload}>
         <Table responsive striped bordered hover size="sm" variant="dark" borderless  style={{color:"white",marginTop:"7.5%",marginLeft:"15%",width:"50rem"}}>
         <thead>
+
+            <td colSpan="3" align="center">
+              <h1 style={{ color: "white" }}>新增區域</h1>
+            </td>
           <tr>
               <td colSpan="3" align="center"><InputGroup size="sm" className="mb-3" style={{width:"300px"}}>
               <InputGroup.Prepend>

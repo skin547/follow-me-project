@@ -18,10 +18,17 @@ class userlistApi(Resource):
             areas = []
             for area in item.areas:
                 status = area.compute_status()
-                area = ({"name": area.name,"video_id":area.video[0].id, "id": area.id, "capacity": area.capacity,
-                         "number": status['number'], "status": status['congestion']})
+                area = ({"name": area.name, 
+                         "video_id":area.video[0].id, 
+                         "id": area.id, 
+                         "capacity": area.capacity,
+                         "number": status['number'], 
+                         "status": status['congestion']})
                 areas.append(area)
-            result.append({'id': item.id, 'name': item.name,'image_path':item.image_path,'areas':areas})
+            result.append({'id': item.id, 
+                           'name': item.name,
+                           'image_path':item.image_path,
+                           'areas':areas})
         return result,201
 
     def post(self):

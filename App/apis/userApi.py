@@ -24,13 +24,21 @@ class userApi(Resource):
             if(target.areas):
                 for area in target.areas:
                     status = area.compute_status()
-                    area_item = {"name": area.name, "id": area.id, "video_id": area.video[0].id, "capacity": area.capacity,
-                                 "number": status['number'], "status": status['congestion']}
+                    area_item = {"name": area.name, 
+                                 "id": area.id, 
+                                 "video_id": area.video[0].id, 
+                                 "capacity": area.capacity,
+                                 "number": status['number'],
+                                 "status": status['congestion']}
                     areas.append((area_item))
             # else: areas is empty
             else:
-                area_item = {"name": "未開放", "id": 1, "video_id": 1, "capacity": 0,
-                             "number": 0, "status": 'grey'}
+                area_item = {"name": "未開放",
+                             "id": 1, 
+                             "video_id": 1, 
+                             "capacity": 0,
+                             "number": 0, 
+                             "status": 'grey'}
                 areas.append((area_item))
             return ({'id': target.id, 'name': target.name,'image_path':target.image_path,'areas':areas}, 200 )
         return 201

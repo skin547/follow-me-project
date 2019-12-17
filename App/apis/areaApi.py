@@ -20,12 +20,19 @@ class areaApi(Resource):
         if(target):
             status = target.compute_status()
             user = target.user
-            return ({"id": target.id, 'name': target.name, 
+            frames_list = []
+            for frame in target.frames:
+                frames_list.append({"number":frame.number,'time':str(frame.time)})
+            return ({"id": target.id, 
+                    'name': target.name, 
                     'capacity': target.capacity, 
                     'time': str(target.time), 
-                    'status': status['congestion'], 'number': status['number'], 
-                    'user': {"name": user.name, "id": user.id} ,
-                    'video_id':target.video[0].id } ), 200
+                    'status': status['congestion'], 
+                    'number': status['number'], 
+                    'user': {"name": user.name,
+                             "id": user.id} ,
+                    'video_id':target.video[0].id,
+                     'frames': frames_list}), 200
         return 201
 
     def post(self):

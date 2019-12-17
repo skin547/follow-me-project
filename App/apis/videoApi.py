@@ -19,10 +19,10 @@ class videoApi(Resource):
     def get(self,id):
         vid = video.query.get(id)
         if(vid == None):
-            return {"status":"video not found"},201
+            return {"error":"video not found"},201
         camera = Camera(vid.source)
         return Response(camera.stream_video(),  mimetype='multipart/x-mixed-replace; boundary=frame')
-        # return Response(self.start_detect(vid), mimetype='multipart/x-mixed-replace; boundary=frame')
+        # return Response(camera.stream_data(vid.area_id),  mimetype='multipart/x-mixed-replace; boundary=frame')
 
     def post(self):
         args = self.__parser.parse_args()
@@ -30,9 +30,5 @@ class videoApi(Resource):
         db.session.add(new_video)
         db.session.commit()
         result = {"id":new_video.id,'area':new_video.area_id,'source':new_video.source}
-        ## TODO : implement people detect here
-        print("start detecting area:" + str(new_video.area))
-        Process(target = self.start_detect, args={new_video} ).start()
-        # p1.start()
         return result, 200
 

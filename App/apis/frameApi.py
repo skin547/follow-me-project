@@ -11,19 +11,18 @@ class frameApi(Resource):
         parser.add_argument("number", type=int)
         self.__parser = parser
 
-    def put(self):
-        # result = frame.query.get(id)
-        result = frame.query.order_by(frame.id.desc()).first()
-        print(result)
-        return {"id":result.id,"area":result.area_id,"number":result.number,"time":str(result.time)},200
+    # def put(self):
+    #     result = frame.query.order_by(frame.id.desc()).first()
+    #     print(result)
+    #     return {"id":result.id,"area":result.area_id,"number":result.number,"time":str(result.time)},200
 
     def get(self):
         frames = frame.query.all()
         result = []
         for item in frames:
-            # area = item.area
-            # 'area': {"id": area.id, "capacity": area.capacity}
-            result.append({'id': item.id, 'number': item.number,'time':str(item.time)})
+            result.append({'id': item.id, 
+                            'number': item.number,
+                            'time':str(item.time)})
         return result, 200
     
     def post(self):
