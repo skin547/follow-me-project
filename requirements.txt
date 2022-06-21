@@ -13,7 +13,7 @@ itsdangerous==1.1.0
 Jinja2==2.11.3
 Mako==1.1.0
 MarkupSafe==1.1.1
-numpy==1.17.3
+numpy==1.22.0
 opencv-python==4.1.1.26
 psycopg2==2.8.4
 PyMySQL==0.9.3
