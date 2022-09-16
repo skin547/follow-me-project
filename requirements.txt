@@ -11,7 +11,7 @@ gunicorn==19.9.0
 imutils==0.5.3
 itsdangerous==1.1.0
 Jinja2==2.11.3
-Mako==1.1.0
+Mako==1.2.2
 MarkupSafe==1.1.1
 numpy==1.17.3
 opencv-python==4.1.1.26
